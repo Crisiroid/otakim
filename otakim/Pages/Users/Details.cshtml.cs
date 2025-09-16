@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using otakim.Data;
 using otakim.Models;
 
-namespace otakim.Pages.Projects
+namespace otakim.Pages.Users
 {
     public class DetailsModel : PageModel
     {
@@ -19,7 +19,7 @@ namespace otakim.Pages.Projects
             _context = context;
         }
 
-        public Project Project { get; set; } = default!;
+        public User User { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -28,14 +28,14 @@ namespace otakim.Pages.Projects
                 return NotFound();
             }
 
-            var project = await _context.Projects.FirstOrDefaultAsync(m => m.Id == id);
-            if (project == null)
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
             {
                 return NotFound();
             }
             else
             {
-                Project = project;
+                User = user;
             }
             return Page();
         }

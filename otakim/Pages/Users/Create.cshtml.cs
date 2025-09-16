@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using otakim.Data;
 using otakim.Models;
 
-namespace otakim.Pages.Projects
+namespace otakim.Pages.Users
 {
     public class CreateModel : PageModel
     {
@@ -25,7 +25,7 @@ namespace otakim.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; } = default!;
+        public User User { get; set; } = default!;
 
         // For more information, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
@@ -35,7 +35,7 @@ namespace otakim.Pages.Projects
                 return Page();
             }
 
-            _context.Projects.Add(Project);
+            _context.Users.Add(User);
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

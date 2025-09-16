@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using otakim.Data;
 using otakim.Models;
 
-namespace otakim.Pages.Projects
+namespace otakim.Pages.Users
 {
     public class EditModel : PageModel
     {
@@ -21,7 +21,7 @@ namespace otakim.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; } = default!;
+        public User User { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -30,12 +30,12 @@ namespace otakim.Pages.Projects
                 return NotFound();
             }
 
-            var project =  await _context.Projects.FirstOrDefaultAsync(m => m.Id == id);
-            if (project == null)
+            var user =  await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
+            if (user == null)
             {
                 return NotFound();
             }
-            Project = project;
+            User = user;
             return Page();
         }
 
@@ -48,7 +48,7 @@ namespace otakim.Pages.Projects
                 return Page();
             }
 
-            _context.Attach(Project).State = EntityState.Modified;
+            _context.Attach(User).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace otakim.Pages.Projects
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!ProjectExists(Project.Id))
+                if (!UserExists(User.Id))
                 {
                     return NotFound();
                 }
@@ -69,9 +69,9 @@ namespace otakim.Pages.Projects
             return RedirectToPage("./Index");
         }
 
-        private bool ProjectExists(int id)
+        private bool UserExists(int id)
         {
-            return _context.Projects.Any(e => e.Id == id);
+            return _context.Users.Any(e => e.Id == id);
         }
     }
 }

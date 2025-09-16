@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using otakim.Data;
 using otakim.Models;
 
-namespace otakim.Pages.Projects
+namespace otakim.Pages.Users
 {
     public class DeleteModel : PageModel
     {
@@ -20,7 +20,7 @@ namespace otakim.Pages.Projects
         }
 
         [BindProperty]
-        public Project Project { get; set; } = default!;
+        public User User { get; set; } = default!;
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -29,15 +29,15 @@ namespace otakim.Pages.Projects
                 return NotFound();
             }
 
-            var project = await _context.Projects.FirstOrDefaultAsync(m => m.Id == id);
+            var user = await _context.Users.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (project == null)
+            if (user == null)
             {
                 return NotFound();
             }
             else
             {
-                Project = project;
+                User = user;
             }
             return Page();
         }
@@ -49,11 +49,11 @@ namespace otakim.Pages.Projects
                 return NotFound();
             }
 
-            var project = await _context.Projects.FindAsync(id);
-            if (project != null)
+            var user = await _context.Users.FindAsync(id);
+            if (user != null)
             {
-                Project = project;
-                _context.Projects.Remove(Project);
+                User = user;
+                _context.Users.Remove(User);
                 await _context.SaveChangesAsync();
             }
 

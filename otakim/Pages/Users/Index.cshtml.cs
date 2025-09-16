@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using otakim.Data;
 using otakim.Models;
 
-namespace otakim.Pages.Projects
+namespace otakim.Pages.Users
 {
     public class IndexModel : PageModel
     {
@@ -19,11 +19,11 @@ namespace otakim.Pages.Projects
             _context = context;
         }
 
-        public IList<Project> Project { get;set; } = default!;
+        public IList<User> User { get;set; } = default!;
 
         public async System.Threading.Tasks.Task OnGetAsync()
         {
-            Project = await _context.Projects.ToListAsync();
+            User = await _context.Users.ToListAsync();
         }
     }
 }

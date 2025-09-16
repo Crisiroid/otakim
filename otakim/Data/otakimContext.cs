@@ -14,8 +14,10 @@ namespace otakim.Data
         {
         }
 
-        public DbSet<otakim.Models.Project> Project { get; set; } = default!;
+        public DbSet<otakim.Models.Project> Projects { get; set; } = default!;
         public DbSet<otakim.Models.User> Users { get; set; } = default!;
         public DbSet<otakim.Models.Task> Tasks { get; set; }
+
+        public DbSet<otakim.Models.Group> Groups { get; set; }
     }
 }
